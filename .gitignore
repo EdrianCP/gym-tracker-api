@@ -1,0 +1,9 @@
+# Entornos virtuales
+venv/
+env/
+
+# Archivos temporales de Python
+__pycache__/
+
+# Nuestra base de datos local (para no subir nuestros datos personales)
+mis_entrenamientos.json
