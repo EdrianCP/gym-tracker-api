@@ -29,7 +29,12 @@ def registrar_dia(tipo_rutina, ejercicio, peso):
     historial_entrenamientos.append(nuevo_registro)
     print(f"✅ Guardado: ID {contador_id} | {tipo_rutina} - {ejercicio}")
     contador_id += 1
+<<<<<<< HEAD
     guardar_datos() 
+=======
+    guardar_datos()
+
+>>>>>>> 558c4cdc562aaf4fb3017ba8f8fa1c0782ecdb92
 def ver_historial():
     print("\n--- MI HISTORIAL ACTUAL ---")
     if len(historial_entrenamientos) == 0:
@@ -43,7 +48,7 @@ def actualizar_peso(id_buscar, nuevo_peso):
         if registro["id"] == id_buscar:
             registro["peso_maximo"] = nuevo_peso
             print(f"🔄 ¡Actualizado! El ID {id_buscar} ahora tiene {nuevo_peso}kg.")
-            guardar_datos() # <--- Persistencia activada
+            guardar_datos()
             return
     print("❌ Error: No se encontró ese ID.")
 
