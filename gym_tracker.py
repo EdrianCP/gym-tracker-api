@@ -1,29 +1,27 @@
 import json
 import os
 
-# --- 1. CONFIGURACIÓN DE PERSISTENCIA ---
-# Le decimos a Python cómo se llamará el archivo en tu SSD
+
 ARCHIVO_DATOS = "mis_entrenamientos.json"
 historial_entrenamientos = []
 contador_id = 1
 
 def cargar_datos():
     global historial_entrenamientos, contador_id
-    # Si el archivo ya existe en tu computadora, lo abrimos y lo leemos
+    
     if os.path.exists(ARCHIVO_DATOS):
         with open(ARCHIVO_DATOS, "r") as archivo:
             historial_entrenamientos = json.load(archivo)
-            # Calculamos el ID para que no se repita con los que ya cargamos
+            
             if len(historial_entrenamientos) > 0:
                 contador_id = historial_entrenamientos[-1]["id"] + 1
 
 def guardar_datos():
-    # Esta función toma la lista de la RAM y la inyecta en el archivo .json
+    
     with open(ARCHIVO_DATOS, "w") as archivo:
         json.dump(historial_entrenamientos, archivo, indent=4)
 
-# --- 2. FUNCIONES CRUD ---
-# (Son las mismas, pero ahora llaman a guardar_datos() al final)
+
 
 def registrar_dia(tipo_rutina, ejercicio, peso):
     global contador_id
@@ -31,8 +29,7 @@ def registrar_dia(tipo_rutina, ejercicio, peso):
     historial_entrenamientos.append(nuevo_registro)
     print(f"✅ Guardado: ID {contador_id} | {tipo_rutina} - {ejercicio}")
     contador_id += 1
-    guardar_datos() # <--- Persistencia activada
-
+    guardar_datos() 
 def ver_historial():
     print("\n--- MI HISTORIAL ACTUAL ---")
     if len(historial_entrenamientos) == 0:
@@ -55,14 +52,14 @@ def borrar_registro(id_buscar):
         if registro["id"] == id_buscar:
             historial_entrenamientos.remove(registro)
             print(f"🗑️ El ID {id_buscar} ha sido eliminado.")
-            guardar_datos() # <--- Persistencia activada
+            guardar_datos() 
             return
     print("❌ Error: No se encontró ese ID.")
 
-# --- 3. MENÚ INTERACTIVO ---
+
 
 def iniciar_sistema():
-    cargar_datos() # <--- Lo primero que hace el sistema al encender es recordar
+    cargar_datos() 
     print("🏋️‍♂️ Bienvenido a tu Gym Tracker 🏋️‍♂️")
     
     while True: 
